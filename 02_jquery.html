@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery</title>
+    <link rel="stylesheet" href="./styles/common.css">
+</head>
+
+<body>
+    <header>
+        <h1>jQuery</h1>
+    </header>
+    <!-- .container -->
+    <div class="container">
+        <ul>
+            <li class="target">項目1</li>
+            <li class="target">項目2</li>
+            <li>項目3</li>
+        </ul>
+    </div>
+
+    <!-- 先引入 jQuery ， 1.下載 -->
+    <!-- <script src="./jquery-3.7.1.js"></script> -->
+
+    <!-- 2.CDN: https://code.jquery.com/jquery-3.7.1.js -->
+    <script src="https://code.jquery.com/jquery-3.7.1.js "></script>
+    <!-- 引入後就可以使用 -->
+    <script>
+        // const target = document.querySelector('.target')
+        console.log('target', $('.target'));
+
+        // target.addEventListener('mouseenter', function () {
+        //     this.style.color = 'lightgreen'
+        //     this.style.cursor = 'pointer'
+        // })
+
+        $('.target').on('mouseenter', function () {
+            $(this).css('color', 'lightgreen')
+        })
+
+        $('.target').on('mouseleave', function () {
+            $(this).css('color', 'black')
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Tree 遍歷 ( 父層子層移動 )</title>
+    <link rel="stylesheet" href="./styles/common.css">
+    <style>
+        table {
+            border: 5px solid black;
+            margin: auto;
+        }
+
+        td {
+            border: 2px solid gray;
+            width: 80px;
+            height: 80px;
+            position: relative;
+        }
+
+        .circle {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: lightgreen;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .innerCircle {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: pink;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>DOM Tree 遍歷 ( 父層子層移動 )</h1>
+    </header>
+    <div class="aaa">
+        <div class="container">
+            <table>
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <div class="circle"></div>
+                        </td>
+                        <td></td>
+                        <td class="target"></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td class="target"></td>
+                        <td>
+                            <div class="circle"></div>
+                        </td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="target">
+                            <div class="circle"></div>
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td class="target"></td>
+                        <td>
+                            <div class="circle">
+                                <div class="innerCircle"></div>
+                            </div>
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td class="target">
+                            <div class="circle">
+                                <section>
+                                    <div>
+                                        <div class="innerCircle"></div>
+                                    </div>
+                                </section>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- 引入jQuery -->
+    <script src="./jquery-3.7.1.js"></script>
+    <!-- 撰寫jQuery -->
+    <script>
+        // 等待DOM TREE產生後執行程式
+        $(function () {
+            // 選擇器
+            $('td').on('click', function () {
+                // console.log("td's children", $(this).children());
+                // 第一層子層 .circle
+                // $(this).children().css('background-color', 'salmon')
+                // 第二層子層(後代) .innerCircle
+                // $(this).children().children().css('background-color', 'purple')
+
+                // 只要指定元素內有符合selector條件 .find(selector)
+                // $(this).find('.innerCircle').css('background-color', 'purple')
+
+                // 往上一個父層找
+                // console.log('td parent', $(this).parent());
+                // $(this).parent().css('background-color', 'lightblue')
+
+                // 往上兩層(更多層)找
+                // $(this).parent().parent().css('background-color', 'lightblue')
+
+                // 從指定元素開始往外找直到 html元素
+                // $(this).parents().css('background-color', 'lightblue')
+
+                // 從指定元素開始往外找，找到 body元素後，選擇 『 body元素的父層 』 進行設定。
+                $(this).parents('.aaa').parent().css('background-color', 'lightblue')
+
+                // 增加停止位置
+                // $(this).parentsUntil('body').css('background-color', 'lightblue')
+
+                // .closet()
+                // console.log('closet tr', $(this).closest('div'));
+
+                // $(this).closest('tr').css('background-color', 'lightblue')
+
+            })
+        })
+    </script>
+</body>
+
+</html>

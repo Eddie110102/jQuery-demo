@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>過濾方法</title>
+    <link rel="stylesheet" href="./styles/common.css">
+    <style>
+        table {
+            border: 5px solid black;
+            margin: auto;
+        }
+
+        td {
+            border: 2px solid gray;
+            width: 80px;
+            height: 80px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>過濾方法</h1>
+    </header>
+    <div class="container">
+        <table>
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td class="target"></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td class="target"></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="target"></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td class="target"></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td class="target"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- 引入jQuery -->
+    <script src="./jquery-3.7.1.js"></script>
+    <!-- 撰寫jQuery -->
+    <script>
+        // 等待DOM TREE產生後執行程式
+        $(function () {
+            // 選擇器
+            console.log('td', $('td'));
+
+            // .eq()
+            $('td').eq(18).css('background-color', 'navy')
+
+            // .first()
+            $('td').first().css('background-color', 'pink')
+
+            // .last()
+            $('td').last().css('background-color', 'lightgreen')
+
+            // .not()
+            $('td').not('.target').css('background-color', 'lightblue')
+
+            // .filter()
+            $('td').filter('.target').css('background-color', 'yellowgreen')
+
+            // .index()
+            $('td').on('click', function () {
+                console.log($(this).index());
+
+            })
+
+            // .slice()
+
+            // (a) ==> 從第a的項目開始一直到最後
+            // $('td').slice(6).css('background-color', 'red')
+
+            // (a,b) ==> 從第a的項目開始一直到第b項之前 【 不包含b 】
+            $('td').slice(6, 15).css('background-color', 'blue')
+        })
+    </script>
+</body>
+
+</html>

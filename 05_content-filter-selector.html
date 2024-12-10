@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>內容過濾選擇器</title>
+    <link rel="stylesheet" href="./styles/common.css">
+</head>
+
+<body>
+    <header>
+        <h1>內容過濾選擇器</h1>
+    </header>
+    <div class="container">
+        <!-- 要寫的內容 -->
+        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellat et sequi eius nostrum quo, veritatis
+            aliquid. Aperiam id ad, esse iste quisquam incidunt voluptatibus, deserunt beatae culpa, necessitatibus
+            optio ea?</p>
+        <p>123</p>
+        <p>3456</p>
+        <p>345</p>
+        <p>789</p>
+        <p><span>p 子元素 span</span></p>
+        <p></p>
+    </div>
+    <!-- 引入jQuery -->
+    <script src="./jquery-3.7.1.js"></script>
+    <!-- 撰寫jQuery -->
+    <script>
+        // 等待DOM TREE產生後執行程式
+        $(function () {
+            // :contains('text')
+            console.log(':contains', $("p:contains(sit)"));
+
+            // :has
+            console.log(':has', $('p:has(span)'));
+
+            // :parent & :empty
+            console.log(':parent', $('p:parent'));
+            console.log(':empty', $('p:empty'));
+
+            // 找到符合條件的元素 加上背景色
+            $('p:contains(Lorem)').css('background-color', 'pink')
+        })
+    </script>
+</body>
+
+</html>

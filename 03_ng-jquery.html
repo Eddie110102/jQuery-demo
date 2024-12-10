@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NG jQuery</title>
+    <link rel="stylesheet" href="./styles/common.css">
+    <!-- 因為網頁還未產生元素，沒有 .target的元素，所以length= 0 -->
+    <!-- <script src="https://code.jquery.com/jquery-3.7.1.js "></script>
+    <script>
+            // const target = document.querySelector('.target')
+            console.log('target', $('.target'));
+
+            // target.addEventListener('mouseenter', function () {
+            //     this.style.color = 'lightgreen'
+            //     this.style.cursor = 'pointer'
+            // })
+
+            $('.target').on('mouseenter', function () {
+                $(this).css('color', 'lightgreen')
+            })
+
+            $('.target').on('mouseleave', function () {
+                $(this).css('color', 'black')
+            })
+    </script> -->
+</head>
+
+<body>
+    <header>
+        <h1>NG jQuery</h1>
+    </header>
+    <!-- .container -->
+    <div class="container">
+        <ul>
+            <li class="target">項目1</li>
+            <li class="target">項目2</li>
+            <li class="target">項目3</li>
+        </ul>
+    </div>
+
+    <!-- 使用jQuery後才引入 ==> Uncaught ReferenceError: $ is not defined -->
+    <script>
+        // const target = document.querySelector('.target')
+        console.log('target', $('.target'));
+
+        // target.addEventListener('mouseenter', function () {
+        //     this.style.color = 'lightgreen'
+        //     this.style.cursor = 'pointer'
+        // })
+
+        $('.target').on('mouseenter', function () {
+            $(this).css('color', 'lightgreen')
+        })
+
+        $('.target').on('mouseleave', function () {
+            $(this).css('color', 'black')
+        })
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.js "></script>
+
+
+    <!-- 正確寫法 -->
+
+    <!-- <script src="https://code.jquery.com/jquery-3.7.1.js "></script>
+    <script>
+        // 等 DOM TREE 產生，在執行function內程式碼
+        $(function () {
+
+            console.log('target', $('.target'));
+
+        })
+    </script> -->
+
+</body>
+
+</html>

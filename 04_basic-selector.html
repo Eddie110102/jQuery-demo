@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>基本選擇器</title>
+    <link rel="stylesheet" href="./styles/common.css">
+</head>
+
+<body>
+    <header>
+        <h1>基本選擇器</h1>
+    </header>
+    <div class="container">
+        <!-- 要寫的內容 -->
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Libero, rem. Velit, in id vero repellat cumque
+            aspernatur soluta et praesentium libero dolore voluptates molestiae laborum? Dolor commodi rerum sit vitae.
+        </p>
+        <p id="target">p2</p>
+        <p>p3</p>
+        <a href="#">超連結</a>
+        <span>行內容器</span>
+    </div>
+    <!-- 引入jQuery -->
+    <script src="./jquery-3.7.1.js"></script>
+    <!-- 撰寫jQuery -->
+    <script>
+        // 等待DOM TREE產生後執行程式
+        $(function () {
+            // CSS選擇器使用方式相同
+
+            console.log('全部元素', $('*'));
+
+            console.log('標籤名稱', $('p'));
+
+            console.log('class屬性值', $('.container'));
+
+            console.log('id屬性值', $('#target'));
+
+            console.log('合併選擇器', $('.container,a,#target'));
+
+        })
+    </script>
+</body>
+
+</html>

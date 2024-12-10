@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>階層選擇器</title>
+    <link rel="stylesheet" href="./styles/common.css">
+    <!-- <style>
+        #div1 > p{
+
+        }
+        #div1 p{
+
+        }
+    </style> -->
+</head>
+
+<body>
+    <header>
+        <h1>階層選擇器</h1>
+    </header>
+    <div class="container">
+        <p>#div1的兄弟層p</p>
+        <div id="div1">
+            <p>#div1 的子層 p</p>
+            <section>
+                <p>#div1 > section > p</p>
+            </section>
+        </div>
+        <p>#div1的兄弟層p EDDIE</p>
+        <p>#div1的兄弟層p</p>
+        <p>#div1的兄弟層p</p>
+    </div>
+    <!-- 引入jQuery -->
+    <script src="./jquery-3.7.1.js"></script>
+    <!-- 撰寫jQuery -->
+    <script>
+        // 等待DOM TREE產生後執行程式
+        $(function () {
+            // 一定是 父層條件 > 子層條件
+            // $('#div1 > p').css('background-color', 'pink')
+
+            // 外層(不一定要是父層) 子層
+            $('#div1 p').css('background-color', 'pink')
+
+            // 同層相鄰
+            $('#div1 + p').css('background-color', 'lightblue')
+
+            // 同層全體
+            $('#div1 ~ p').css('background-color', 'salmon')
+
+            // console.log($('#div1 ~ p'));
+
+        })
+    </script>
+</body>
+
+</html>

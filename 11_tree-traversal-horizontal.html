@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Tree 遍歷 ( 兄弟層移動 )</title>
+    <link rel="stylesheet" href="./styles/common.css">
+    <style>
+        table {
+            border: 5px solid black;
+            margin: auto;
+        }
+
+        td {
+            border: 2px solid gray;
+            width: 80px;
+            height: 80px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>DOM Tree 遍歷 ( 兄弟層移動 )</h1>
+    </header>
+    <div class="container">
+        <table>
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td class="target"></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td class="target"></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="target"></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td class="target"></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td class="target"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- 引入jQuery -->
+    <script src="./jquery-3.7.1.js"></script>
+    <!-- 撰寫jQuery -->
+    <script>
+        // 等待DOM TREE產生後執行程式
+        $(function () {
+            // 選擇器
+
+        })
+    </script>
+</body>
+
+</html>

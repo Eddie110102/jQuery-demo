@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表單選擇器</title>
+    <link rel="stylesheet" href="./styles/common.css">
+</head>
+
+<body>
+    <header>
+        <h1>表單選擇器</h1>
+    </header>
+    <div class="container">
+        <form action="#">
+            <input name="userName" type="text">
+            <input type="text">
+            <br>
+            <input type="password" name="" id="">
+            <br>
+            <textarea id=""></textarea>
+            <br>
+            <input type="radio" name="test1" id="aaa" value="1" checked><label for="aaa">1</label>
+            <input type="radio" name="test1" id="" value="2"><label for="">2</label>
+            <br>
+            <!-- 延伸輸入： ctrl + alt + 上/下鍵 -->
+            <input type="checkbox" name="test2" id="" value="1"><label for="">1</label>
+            <input type="checkbox" name="test2" id="" value="2"><label for="">2</label>
+            <input type="checkbox" name="test2" id="" value="3" checked><label for="">3</label>
+            <input type="checkbox" name="test2" id="" value="4"><label for="">4</label>
+            <br>
+            <select name="" id="">
+                <!-- option[value=$$]{項目$$}*5 -->
+                <option value="01">項目01</option>
+                <option value="02">項目02</option>
+                <option value="03">項目03</option>
+                <option value="04" selected>項目04</option>
+                <option value="05">項目05</option>
+            </select>
+            <input type="reset">
+            <input type="submit">
+            <input type="button" value="一般按鈕">
+            <button disabled>一般按鈕</button>
+            <button id="check">檢查</button>
+        </form>
+    </div>
+    <!-- 引入jQuery -->
+    <script src="./jquery-3.7.1.js"></script>
+    <!-- 撰寫jQuery -->
+    <script>
+        // 等待DOM TREE產生後執行程式
+        $(function () {
+            // :input 包含 input & textarea & select & button & button 元素
+            console.log(':input', $(':input'));
+
+            // :button 包含 type=button & button 元素
+            console.log(':button', $(':button'));
+            $(':button').css('padding', '5px')
+
+            // :text 
+            console.log(':text', $(':text'));
+
+            // :password
+            console.log(':password', $(':password'));
+
+            // 混合使用
+            console.log(':input + [name=test2]', $(':input[name=test2]'));
+            // css
+            console.log('input + [name=test2]', $('input[name=test2]'));
+
+
+            // :radio
+            console.log(':radio', $(':radio'));
+
+            // :checkbox
+            console.log(':checkbox', $(':checkbox'));
+
+            // :submit 包含 type=submit & button 元素
+            console.log(':submit', $(':submit'));
+
+            $('#check').on('click', function (e) {
+                e.preventDefault()
+                // :checked  html屬性 checked || selected
+                // console.log(':checked', $(':checked'));
+
+                // :selected
+                // console.log(':selected', $(':selected'));
+
+                // 練習1： 使用 .length 計算出選了幾個選項
+                // console.log('確認 test2 多選題有選幾個選項', $('input[name=test2]:checked').length);
+
+                // 練習1-1： 用判斷式回應使否全選/選幾個選項/未選
+                const totalOption = $('input[name=test2]').length
+                const isCheckedOption = $('input[name=test2]:checked').length
+                // console.log('totalOption', totalOption);
+
+                if (totalOption == isCheckedOption) {
+                    console.log('選項全選');
+                } else if (totalOption > isCheckedOption && isCheckedOption != 0) {
+                    console.log(`目前選擇 ${isCheckedOption} 個項目`);
+                } else {
+                    console.log('未選');
+                }
+
+                // 練習2： 點擊檢查按鈕後，將已選擇的option加上背景色 pink
+
+                $('option').css('background-color', 'transparent')
+                $(':selected').css('background-color', 'pink')
+                // $('option:not(:selected)').css('background-color', 'transparent')
+            })
+
+            // :disabled
+            console.log(':disabled', $(':disabled'));
+
+
+        })
+    </script>
+</body>
+
+</html>

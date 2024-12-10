@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>子過濾選擇器</title>
+    <link rel="stylesheet" href="./styles/common.css">
+</head>
+
+<body>
+    <header>
+        <h1>子過濾選擇器</h1>
+    </header>
+    <div class="container">
+        <!-- 要寫的內容 -->
+        <!-- ul>li{項目$$}*5 -->
+        <ul>
+            <li>項目01</li>
+            <li>項目02</li>
+            <li>項目03</li>
+            <li>項目04</li>
+            <li>項目05</li>
+        </ul>
+        <br>
+        <hr>
+        <br>
+        <ul>
+            <li>單一項目內容</li>
+        </ul>
+    </div>
+    <!-- 引入jQuery -->
+    <script src="./jquery-3.7.1.js"></script>
+    <!-- 撰寫jQuery -->
+    <script>
+        // 等待DOM TREE產生後執行程式
+        $(function () {
+            // :first-child
+            // $('li:first-child').css('background-color', 'pink')
+
+            // :last-child
+            // $('li:last-child').css('background-color', 'lightblue')
+
+            // :nth-child(index) index ==> 1 開始計算
+            $('li:nth-child(3)').css('background-color', 'purple')
+
+            // :only-child 不能有兄弟層
+            // $('li:only-child').css('background-color', 'yellowgreen')
+        })
+    </script>
+</body>
+
+</html>

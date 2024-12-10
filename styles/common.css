@@ -1,0 +1,19 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: black;
+}
+
+h1 {
+    padding: 30px;
+    text-align: center;
+    color: lightgreen;
+}
+
+.container {
+    width: 90%;
+    margin: 50px auto;
+}

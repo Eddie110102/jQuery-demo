@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript</title>
+    <link rel="stylesheet" href="./styles/common.css">
+</head>
+
+<body>
+    <header>
+        <h1>JavaScript</h1>
+    </header>
+    <!-- .container -->
+    <div class="container">
+        <ul>
+            <li class="target">項目1</li>
+            <li class="target">項目2</li>
+            <li class="target">項目3</li>
+        </ul>
+    </div>
+
+    <script>
+        // javascript 程式碼
+        // 滑鼠移入 mouseenter
+        // 滑鼠移出 mouseleave
+        // 事件監聽 element.addEventListener('事件',函數)
+
+        // 流程
+        // 1. 抓到要作用的元素
+        // 2. 加入事件監聽
+        // 3. 當元素觸發事件時做的函數(function)
+
+        // const target = document.querySelector('.target')
+        // // console.log('target', target);
+
+        // target.addEventListener('mouseenter', function () {
+        //     this.style.color = 'lightgreen'
+        //     this.style.cursor = 'pointer'
+        // })
+
+        // target.addEventListener('mouseleave', function () {
+        //     this.style.color = 'black'
+        // })
+
+        const targets = document.querySelectorAll('.target')
+
+        targets.forEach((target) => {
+            target.addEventListener('mouseenter', function () {
+                this.style.color = 'lightgreen'
+                this.style.cursor = 'pointer'
+            })
+
+            target.addEventListener('mouseleave', function () {
+                this.style.color = 'black'
+            })
+        })
+
+
+    </script>
+</body>
+
+</html>
