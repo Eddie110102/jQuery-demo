@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM Tree 遍歷 ( 父層子層移動 )</title>
+    <link rel="stylesheet" href="./styles/common.css" />
+    <style>
+      table {
+        border: 5px solid black;
+        margin: auto;
+      }
+
+      td {
+        border: 2px solid gray;
+        width: 80px;
+        height: 80px;
+        position: relative;
+      }
+
+      .circle {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-color: lightgreen;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      .innerCircle {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background-color: pink;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 10;
+      }
+
+      .active {
+        background-color: salmon;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <h1>DOM Tree 遍歷 ( 父層子層移動 )</h1>
+    </header>
+    <div class="aaa">
+      <div class="container">
+        <table>
+          <tbody>
+            <tr>
+              <td></td>
+              <td>
+                <div class="circle"></div>
+              </td>
+              <td></td>
+              <td class="target"></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td class="target"></td>
+              <td>
+                <div class="circle"></div>
+              </td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td class="target">
+                <div class="circle"></div>
+              </td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td class="target"></td>
+              <td>
+                <div class="circle">
+                  <div class="innerCircle"></div>
+                </div>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td class="target">
+                <div class="circle">
+                  <section>
+                    <div>
+                      <div class="innerCircle"></div>
+                    </div>
+                  </section>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <!-- 引入jQuery -->
+    <script src="./jquery-3.7.1.js"></script>
+    <!-- 撰寫jQuery -->
+    <script>
+      // 等待DOM TREE產生後執行程式
+      $(function () {
+        // 選擇器
+        $("td").on("click", function () {
+          // 用 .css() 抓到 bgc 的 rgb值 ，然後判斷現在rgb值是不是同樣顏色
+          const nowColor = $(this).children().css("background-color");
+          console.log("nowColor", nowColor);
+          if (nowColor == "rgb(144, 238, 144)") {
+            $(this).children().css("background-color", "salmon");
+          } else {
+            $(this).children().css("background-color", "lightgreen");
+          }
+
+          // 用 class 增加/移除顏色
+          // $(this).children().toggleClass("active");
+        });
+      });
+    </script>
+  </body>
+</html>
