@@ -105,9 +105,16 @@
 
                 // 練習2： 點擊檢查按鈕後，將已選擇的option加上背景色 pink
 
-                $('option').css('background-color', 'transparent')
-                $(':selected').css('background-color', 'pink')
+                // A1.
+                // $('option').css('background-color', 'transparent')
+                // $(':selected').css('background-color', 'pink')
+
+                // A2.
                 // $('option:not(:selected)').css('background-color', 'transparent')
+
+                // A3.
+                $(':selected').css('background-color', 'pink').siblings().css('background-color', 'transparent')
+
             })
 
             // :disabled

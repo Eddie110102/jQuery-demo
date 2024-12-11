@@ -31,36 +31,36 @@
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td class="target"></td>
+                    <td class="target">target</td>
                     <td></td>
                 </tr>
                 <tr>
                     <td></td>
-                    <td class="target"></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td class="target"></td>
-                    <td></td>
+                    <td class="target">target</td>
                     <td></td>
                     <td></td>
                     <td></td>
                 </tr>
                 <tr>
+                    <td class="target">target</td>
                     <td></td>
                     <td></td>
-                    <td class="target"></td>
                     <td></td>
                     <td></td>
                 </tr>
                 <tr>
                     <td></td>
                     <td></td>
+                    <td class="target">target</td>
                     <td></td>
                     <td></td>
-                    <td class="target"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td class="target">target</td>
                 </tr>
             </tbody>
         </table>
@@ -71,7 +71,42 @@
     <script>
         // 等待DOM TREE產生後執行程式
         $(function () {
-            // 選擇器
+            $('td').on('click', function () {
+                // .next()
+                // $(this).css('background-color', 'pink').next().css('background-color', 'lightblue')
+
+                // .nextAll
+                // $(this).css('background-color', 'pink').nextAll().css('background-color', 'lightblue')
+
+                // .nextUntil
+                // $(this).css('background-color', 'pink').nextUntil('.target').css('background-color', 'lightblue')
+
+                // .prev()
+                // $(this).css('background-color', 'pink').prev().css('background-color', 'lightgreen')
+
+                // .prevAll
+                // $(this).css('background-color', 'pink').prevAll().css('background-color', 'lightgreen')
+
+                // .prevUntil
+                // $(this).css('background-color', 'pink').prevUntil('.target').css('background-color', 'lightgreen')
+
+                // 後二 變藍色 、 前一 變綠色
+
+                // A1. $(this) => $(this).next() => $(this).next().next() => $(this).next() => $(this) => $(this).prev()
+                $(this).css('background-color', 'black').next().next().css('background-color', 'red').end().end().prev().css('background-color', 'navy')
+
+                // A2. $(this) => $(this).prev() => $(this) => $(this).next() => $(this).next().next() 
+                // $(this).css('background-color', 'black').prev().css('background-color', 'navy').end().next().next().css('background-color', 'red')
+
+
+                // .siblings()
+                // $(this).css('background-color', 'black').siblings().css('background-color', 'red')
+
+                console.log($(this));
+                console.log($('td'));
+
+
+            })
 
         })
     </script>

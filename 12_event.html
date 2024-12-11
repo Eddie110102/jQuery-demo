@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件</title>
+    <link rel="stylesheet" href="./styles/common.css">
+</head>
+
+<body>
+    <header>
+        <h1>事件</h1>
+    </header>
+    <div class="container">
+        <input type="text" id="userName">
+        <ul>
+            <li>項目1</li>
+        </ul>
+        <button id="add">增加li</button>
+    </div>
+    <!-- 引入jQuery -->
+    <script src="./jquery-3.7.1.js"></script>
+    <!-- 撰寫jQuery -->
+    <script>
+        // 等待DOM TREE產生後執行程式
+        $(function () {
+            // 單一事件綁定單一函數
+            // $('#userName').on('click', function () {
+            // console.log('click');
+            // })
+
+            // 多個事件綁定單一函數
+            // $('#userName').on('click dblclick contextmenu', function () {
+            // console.log('click');
+            // })
+
+            // 多個事件綁定多個函數
+            $('#userName').on({
+                click: function () {
+                    console.log('click');
+                },
+                dblclick: function () {
+                    console.log('dblclick');
+                },
+                contextmenu: function () {
+                    console.log('contextmenu');
+                },
+            })
+
+            // 動態綁定 .append()
+            let index = 1;
+
+            // $('li').on('click', function () {
+            //     console.log(this);
+            // })
+
+            $('#add').on('click', function () {
+                index++
+                $('ul').append(`<li>項目 ${index}</li>`)
+            })
+
+            $('ul').on('click', 'li', function () {
+                console.log(this);
+            })
+
+        })
+    </script>
+</body>
+
+</html>
