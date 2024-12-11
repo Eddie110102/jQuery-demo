@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>滑鼠事件</title>
+    <link rel="stylesheet" href="./styles/common.css">
+    <!-- 引入 font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+        integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        .password-input-box {
+            margin: 20px;
+            width: 200px;
+            border: 2px solid gray;
+            border-radius: 5px;
+            padding: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+        }
+
+        #userPassword {
+            border: none;
+            padding: 5px 0;
+            outline: none;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>滑鼠事件</h1>
+    </header>
+    <div class="container">
+        <input type="text" id="userName">
+        <hr>
+
+        <!-- <input type="button" value="顯示"> -->
+        <div class="password-input-box">
+            <input type="password" name="" id="userPassword">
+            <span id="change">
+                <i class="fa-solid fa-eye"></i>
+            </span>
+        </div>
+    </div>
+    <!-- 引入jQuery -->
+    <script src="./jquery-3.7.1.js"></script>
+    <!-- 撰寫jQuery -->
+    <script>
+        // 等待DOM TREE產生後執行程式
+        $(function () {
+            // mouse event
+            $('#userName').on({
+                click: function () {
+
+                    console.log('click');
+                },
+                mousedown: function () {
+                    console.log('mousedown');
+                },
+                mouseover: function () {
+                    console.log('mouseover');
+                },
+                mousemove: function () {
+                    console.log('left: ', event.pageX, ' / top: ', event.pageY);
+                },
+                // 右鍵隱藏菜單
+                contextmenu: function () {
+                    event.preventDefault()
+                    console.log('contextmenu');
+                }
+            })
+
+            // 點擊按鈕 切換文字 顯示/隱藏 以及 改變顯示 明碼 或是 *
+            // 1. 點擊按鈕 判斷 type ==> $(selector).attr('attr name') 
+            // 取值  .attr('type') => password/text 
+
+
+            // 2. 設定 type
+            // 設定值 .attr('key','value') => .attr('type','text')
+
+            $('#change').on('click', function () {
+                // 取 attr type 值
+                const nowStatus = $('#userPassword').attr('type')
+                console.log('type', nowStatus);
+
+                if (nowStatus == 'password') {
+                    $('#userPassword').attr('type', 'text')
+                    $(this).empty().append('<i class="fa-solid fa-eye-slash"></i>')
+                } else {
+                    $('#userPassword').attr('type', 'password')
+                    $(this).empty().append('<i class="fa-solid fa-eye"></i>')
+
+                }
+            })
+
+            // $('#userPassword').on({
+            //     'focus': function () {
+            //         $(this).parent().css('border-color', 'lightgreen')
+            //     }, blur: function () {
+            //         $(this).parent().css('border-color', 'gray')
+            //     }
+            // })
+        })
+    </script>
+</body>
+
+</html>

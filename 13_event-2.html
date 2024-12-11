@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件物件 屬性/方法</title>
+    <link rel="stylesheet" href="./styles/common.css">
+</head>
+
+<body>
+    <header>
+        <h1>事件物件 屬性/方法</h1>
+    </header>
+    <div class="container">
+        <!-- ul > ( li > span{span$$} )*5 -->
+        <ul>
+            <li>
+                <span>span01</span>
+            </li>
+            <li><span>span02</span></li>
+            <li><span>span03</span></li>
+            <li><span>span04</span></li>
+            <li><span>span05</span></li>
+        </ul>
+
+        <a href="https://www.google.com" target="_blank">Google</a>
+    </div>
+    <!-- 引入jQuery -->
+    <script src="./jquery-3.7.1.js"></script>
+    <!-- 撰寫jQuery -->
+    <script>
+        // 事件捕捉與冒泡事件
+        $(function () {
+            $('.container').on('click', function () {
+                console.log('container 被點擊', $(this));
+            })
+
+            $('ul').on('click', function () {
+                console.log('ul 被點擊', $(this));
+            })
+
+            $('li').on('click', function () {
+                console.log('li 被點擊', $(this));
+            })
+
+            $('span').on('click', function () {
+                // 停止冒泡事件。
+                event.stopPropagation()
+                console.log('span 被點擊', $(this));
+            })
+
+            // $('a').on('click', function () {
+            //     // 停止預設事件。
+            //     event.preventDefault()
+            //     console.log('event', event);
+            // })
+        })
+    </script>
+</body>
+
+</html>

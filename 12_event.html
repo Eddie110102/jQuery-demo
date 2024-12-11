@@ -15,9 +15,11 @@
     <div class="container">
         <input type="text" id="userName">
         <ul>
-            <li>項目1</li>
+            <li>項目 1</li>
         </ul>
         <button id="add">增加li</button>
+        <button id="on">on</button>
+        <button id="off">off</button>
     </div>
     <!-- 引入jQuery -->
     <script src="./jquery-3.7.1.js"></script>
@@ -48,22 +50,53 @@
                 },
             })
 
-            // 動態綁定 .append()
+            // 動態綁定 搭配 .append()
             let index = 1;
 
+            // 沒有動態綁定事件
             // $('li').on('click', function () {
             //     console.log(this);
             // })
 
+            // 點擊 增加li 按鈕即動態新增元素在畫面上，並且也能夠有事件觸發效果
             $('#add').on('click', function () {
                 index++
                 $('ul').append(`<li>項目 ${index}</li>`)
             })
 
+            // 有動態綁定事件
             $('ul').on('click', 'li', function () {
                 console.log(this);
             })
 
+            // 觸發一次
+
+            $('li').one('click', function () {
+                console.log($(this));
+            })
+
+            // 移除事件綁定
+
+            function log2() {
+                // console.log("Eddie");
+                console.log("Eddie", new Date());
+            }
+
+            // $('#on').on('click', function () {
+            //     $('li').on('click', log2)
+            // })
+
+            // $('#off').on('click', function () {
+            //     $('li').off('click', log2)
+            // })
+
+            $('#on').on('click', function () {
+                $('ul').on('click', 'li', log2)
+            })
+
+            $('#off').on('click', function () {
+                $('ul').off('click', 'li', log2)
+            })
         })
     </script>
 </body>
