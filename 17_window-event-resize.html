@@ -25,6 +25,8 @@
     </header>
     <div class="container">
         <div class="target"></div>
+        <button id="setWidth">setWidth</button>
+        <button id="setHeight">setHeight</button>
     </div>
     <!-- 引入jQuery -->
     <script src="./jquery-3.7.1.js"></script>
@@ -55,6 +57,7 @@
             targetCenter()
             $(window).on('resize', targetCenter)
 
+            // 取值
             console.log('width content', $('.target').width());
             console.log('innerWidth content+padding', $('.target').innerWidth());
             console.log('outerWidth content+padding+border', $('.target').outerWidth());
@@ -65,6 +68,13 @@
             console.log('outerHeight content+padding+border', $('.target').outerHeight());
             console.log('outerHeight(true)  content+padding+border+margin', $('.target').outerHeight(true));
 
+            // 設定值
+            $('#setWidth').on('click', function () {
+                $('.target').width(700)
+            })
+            $('#setHeight').on('click', function () {
+                $('.target').height(200)
+            })
         })
     </script>
 </body>
