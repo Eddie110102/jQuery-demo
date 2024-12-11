@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>鍵盤事件</title>
+    <link rel="stylesheet" href="./styles/common.css">
+    <style>
+        input {
+            font-size: 30px;
+            padding: 20px;
+        }
+
+        #display {
+            margin-top: 20px;
+            font-size: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>鍵盤事件</h1>
+    </header>
+    <div class="container">
+        <input type="text" id="userName">
+        <p id="display">
+    </div>
+    </div>
+    <!-- 引入jQuery -->
+    <script src="./jquery-3.7.1.js"></script>
+    <!-- 撰寫jQuery -->
+    <script>
+        // 等待DOM TREE產生後執行程式
+        $(function () {
+
+            // 輸入文字後，立即抓取輸入框值 .val() ==> .value
+            $('#userName').on({
+                keydown: function () {
+                    // console.log('keydown', event);
+                    // console.log('ctrl', event.ctrlKey);
+                    // console.log('alt', event.altKey);
+                    // console.log('shift', event.shiftKey);
+                    // console.log('meta', event.metaKey);
+                    // if (event.ctrlKey && event.altKey) {
+                    //     console.log('ctrl + alt');
+                    // }
+
+                    console.log('keydown', $(this).val());
+
+                },
+
+                keyup: function () {
+                    // if (event.which == 37) {
+                    //     console.log('左鍵');
+                    // } else if (event.which == 38) {
+                    //     console.log('上鍵');
+                    // } else if (event.which == 39) {
+                    //     console.log('右鍵');
+                    // } else if (event.which == 40) {
+                    //     console.log('下鍵');
+                    // }
+
+                    console.log('keyup', $(this).val());
+
+                    // .text() innerText innerHTML
+                    if (event.which == 13) {
+                        $('#display').text($(this).val())
+                    }
+                }
+            })
+        })
+    </script>
+</body>
+
+</html>

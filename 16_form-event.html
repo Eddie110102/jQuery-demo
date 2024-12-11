@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表單事件</title>
+    <link rel="stylesheet" href="./styles/common.css">
+    <style>
+        .creditCard {
+            margin: 20px 0;
+        }
+
+        .cardNumber {
+            width: 50px;
+            border-radius: 5px;
+            padding: 5px;
+        }
+
+        #city {
+            margin: 20px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>表單事件</h1>
+    </header>
+    <div class="container">
+        <input type="text" id="userName">
+        <button id="focus">focus</button>
+        <button id="blur">blur</button>
+        <hr>
+        <div class="creditCard">
+            <input type="text" class="cardNumber" maxlength="4">
+            <input type="text" class="cardNumber" maxlength="4">
+            <input type="text" class="cardNumber" maxlength="4">
+            <input type="text" class="cardNumber" maxlength="4">
+        </div>
+
+        <hr>
+
+        <select name="" id="city">
+            <option value="01">city01</option>
+            <option value="02">city02</option>
+            <option value="03">city03</option>
+            <option value="04">city04</option>
+            <option value="05">city05</option>
+        </select>
+    </div>
+    <!-- 引入jQuery -->
+    <script src="./jquery-3.7.1.js"></script>
+    <!-- 撰寫jQuery -->
+    <script>
+        // 等待DOM TREE產生後執行程式
+        $(function () {
+            // focus、blur、change 
+            $('#userName').on({
+                focus: function () {
+                    console.log('focus');
+
+                },
+                blur: function () {
+                    console.log('blur');
+
+                },
+                change: function () {
+                    console.log('change');
+                }
+            })
+
+            $('#focus').on('click', function () {
+                $('#userName').focus()
+            })
+
+            $('#blur').on('click', function () {
+                $('#userName').blur()
+            })
+
+            $('.cardNumber').on({
+                keyup: function () {
+                    // console.log($(this).val().length);
+
+                    let nowValue = $(this).val()
+
+                    // 如果輸入的不是數字 .replace(" 被取代的值 regex ","改成的值")
+                    // console.log(nowValue.replace(/\D/g, ''));
+                    nowValue = nowValue.replace(/\D/g, '')
+                    $(this).val(nowValue)
+
+                    // 判斷使用者輸入完4位數，自動跳下一個
+                    if (nowValue.length >= 4) {
+                        if ($(this).index() < 3) {
+                            $(this).next().focus()
+                        } else {
+                            $(this).blur()
+                        }
+                    }
+
+                    // 如果是沒有輸入值，同時按下 backspace ==> 退回到上一格 
+                    if (nowValue.length == 0 && event.which == 8) {
+                        if ($(this).index() < 1) {
+                            $(this).blur()
+                        } else {
+                            $(this).prev().focus()
+                        }
+                    }
+                }
+            })
+
+            $('#city').on('change', function () {
+                console.log($(this).val());
+            })
+
+        })
+    </script>
+</body>
+
+</html>
