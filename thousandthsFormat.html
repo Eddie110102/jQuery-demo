@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>千分位格式</title>
+    <link rel="stylesheet" href="./styles/common.css">
+    <style>
+        hr {
+            margin: 20px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>千分位格式</h1>
+    </header>
+    <div class="container">
+        <input type="text">
+        <hr>
+        <div id="result"></div>
+    </div>
+    <script src="./jquery-3.7.1.js"></script>
+    <script>
+        $(function () {
+            $('input').on({
+                keyup: function () {
+                    let nowValue = $(this).val()
+
+                    nowValue = nowValue.replace(/\D/g, '')
+                    nowValue = nowValue.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                    console.log(nowValue);
+
+                    $('#result').text(`$${nowValue}`)
+                    $(this).val(nowValue)
+
+                    if (nowValue.length == 0) {
+                        $('#result').text(`$0`)
+                    }
+                }
+            })
+        })
+    </script>
+</body>
+
+</html>
