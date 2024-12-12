@@ -87,7 +87,14 @@
 
 
             $('#getProp').on('click', function () {
-                console.log($('#agree').prop('checked'));
+                // console.log($('#agree').prop('checked'));
+
+                // .attr() 看 .prop() 差異
+
+                // disabled= 'disabled'
+                console.log(".attr('disabled')", $('#submit').attr('disabled'));
+                // disabled= true
+                console.log(".prop('disabled')", $('#submit').prop('disabled'));
             })
 
             $('#agree').on('click', function () {

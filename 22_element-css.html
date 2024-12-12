@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>元素的樣式設定</title>
+    <link rel="stylesheet" href="./styles/common.css">
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: lightgreen;
+            position: relative;
+            transition: .4s;
+            /* top */
+            /* left */
+        }
+
+        .active {
+            width: 300px;
+            height: 300px;
+            background-color: salmon;
+            border-radius: 25px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>元素的樣式設定</h1>
+    </header>
+    <div class="container">
+        <button id="getCSS">getCSS</button>
+        <button id="setCSS">setCSS</button>
+        <button id="addActive">addActive</button>
+        <button id="removeActive">removeActive</button>
+        <button id="toggleActive">toggleActive</button>
+        <button id="hasActive">hasActive</button>
+        <div class="box"></div>
+    </div>
+    <!-- 引入jQuery -->
+    <script src="./jquery-3.7.1.js"></script>
+    <!-- 撰寫jQuery -->
+    <script>
+        // 等待DOM TREE產生後執行程式
+        $(function () {
+            // 你的程式碼 
+            $('#setCSS').on('click', function () {
+                // $('.box').css('width', '700px').css('height', '700px')
+                // $('.box').css({
+                //     width: '700px', height: '700px', 'border-radius': '20px'
+                // })
+
+
+            })
+            $('#getCSS').on('click', function () {
+                // console.log($('.box').css('width'));
+
+            })
+
+            $('#addActive').on('click', function () {
+                // .addClass()
+                $('.box').addClass('active')
+
+            })
+            $('#removeActive').on('click', function () {
+                // .removeClass()
+                $('.box').removeClass('active')
+            })
+
+
+
+            $('#toggleActive').on('click', function () {
+                // .toggleClass()
+                $('.box').toggleClass('active')
+            })
+
+
+
+            $('#hasActive').on('click', function () {
+                // .toggleClass()
+                console.log($('.box').hasClass('active'));
+
+                const status = $('.box').hasClass('active')
+                // 如果 有 active => 往右移動50px
+                // 如果 沒有 active => 往下移動50px
+                if (status) {
+                    // true
+                    // $('.box').css('left', '50px')
+                    $('.box').css({ 'left': '+=50', 'background-color': 'navy' })
+                } else {
+                    // false
+                    // $('.box').css('top', '50px')
+                    $('.box').css({ 'top': '+=50', 'background-color': 'purple' })
+                }
+
+            })
+        })
+    </script>
+</body>
+
+</html>
