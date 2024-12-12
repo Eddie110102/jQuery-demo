@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>通訊錄(checkbox)</title>
+    <link rel="stylesheet" href="./styles/common.css">
+    <style>
+        table {
+            border: 3px solid black;
+            width: 400px;
+        }
+
+        th,
+        td {
+            text-align: center;
+            border: 1px solid gray;
+        }
+
+        tr.active {
+            background-color: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>通訊錄(checkbox)</h1>
+    </header>
+    <div class="container">
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                        <input type="checkbox" id="checkall" />
+                    </th>
+                    <th>name</th>
+                    <th>email</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <input type="checkbox" name="" class="checkbox" />
+                    </td>
+                    <td>Eddie</td>
+                    <td>eddie@test.com</td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="checkbox" name="" class="checkbox" />
+                    </td>
+                    <td>Gary</td>
+                    <td>gary@test.com</td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="checkbox" name="" class="checkbox" />
+                    </td>
+                    <td>Amy</td>
+                    <td>amy@test.com</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- 引入jQuery -->
+    <script src="./jquery-3.7.1.js"></script>
+    <!-- 撰寫jQuery -->
+    <script>
+        // 等待DOM TREE產生後執行程式
+        $(function () {
+            // .prop()
+            // .length
+            // :checked
+            // addClass() removeClass()
+
+            // 全選 #checkall
+
+            $('#checkall').on('click', function () {
+                const status = $(this).prop('checked')
+                console.log(status);
+
+                if (status) {
+                    // 全選 有 checked 時， 就將下方的所有 checkbox 打勾
+                    $('.checkbox').prop('checked', true)
+                    $('.checkbox').closest('tr').addClass('active')
+                } else {
+                    // 全選 取消 checked 時， 就將下方所有的 checkbox 取消打勾
+                    $('.checkbox').prop('checked', false)
+                    $('.checkbox').closest('tr').removeClass('active')
+
+                }
+
+            })
+
+            // 個別 .checkbox 
+            // 個別 checkbox 有 checked 時，改變背景色
+            // 個別 checkbox 取消 checked 時，改變顏色
+            // 個別 checkbox 觸發勾選時， 判斷是不是全選 => 改變 全選的狀態
+            $('.checkbox').on('click', function () {
+                // 判斷 我自己是不是有勾選
+                if ($(this).prop('checked')) {
+                    $(this).closest('tr').addClass('active')
+                } else {
+                    $(this).closest('tr').removeClass('active')
+                }
+
+                // 總共有幾個項目 .length
+                const totalOption = $('.checkbox').length
+
+                // 現在有勾選幾個 checked
+                const isCheckedOption = $('.checkbox:checked').length
+
+                console.log('totalOption', totalOption, 'isCheckedOption', isCheckedOption);
+
+                console.log($(this));
+
+                // 判斷 
+                if (totalOption == isCheckedOption) {
+                    // 全選
+                    $('#checkall').prop('checked', true)
+                } else {
+                    $('#checkall').prop('checked', false)
+                }
+            })
+
+
+        })
+    </script>
+</body>
+
+</html>
