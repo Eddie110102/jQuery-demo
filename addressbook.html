@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>通訊錄</title>
+    <link rel="stylesheet" href="./styles/common.css">
+    <style>
+        .inputGroup {
+            border: 5px solid black;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 20px;
+        }
+
+        table {
+            margin-top: 50px;
+            width: 100%;
+            border: 3px solid black;
+        }
+
+        th,
+        td {
+            width: 25%;
+            height: 50px;
+            text-align: center;
+            border: 2px solid gray;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>通訊錄</h1>
+    </header>
+    <div class="container">
+        <div class="inputGroup">
+            <div>
+                <label for="">類別：</label>
+                <select name="" id="category">
+                    <!-- .val('default') -->
+                    <option value="default">請選擇類別</option>
+                    <option value="同事">同事</option>
+                    <option value="朋友">朋友</option>
+                    <option value="家人">家人</option>
+                </select>
+            </div>
+            <div>
+                <label for="">姓名：</label>
+                <input type="text" id="name">
+            </div>
+            <div>
+                <label for="">電話：</label>
+                <input type="tel" id="telephone">
+            </div>
+            <div>
+                <button id="add">新增</button>
+            </div>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>類別</th>
+                    <th>姓名</th>
+                    <th>電話</th>
+                    <th>刪除</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>aa</td>
+                    <td>bb</td>
+                    <td>cc</td>
+                    <td><button id="delete">刪除</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- 引入jQuery -->
+    <script src="./jquery-3.7.1.js"></script>
+    <!-- 撰寫jQuery -->
+    <script>
+        // 等待DOM TREE產生後執行程式
+        $(function () {
+            // 點擊新增 ==> 抓到 類別、姓名、電話的值 ==> 使用append()/prepend() 新增到 tbody 中 ==> 清空所有輸入框的值
+            // .append(`<tr>
+            //         <td>aa</td>
+            //         <td>bb</td>
+            //         <td>cc</td>
+            //         <td><button id="delete">刪除</button></td>
+            //     </tr>`)
+
+            $('#add').on('click', function () {
+                const category = $('#category').val()
+                const name = $('#name').val()
+                const phone = $('#telephone').val()
+
+                $('tbody').append(`<tr>
+                                    <td>${category}</td>
+                                    <td>${name}</td>
+                                    <td>${phone}</td>
+                                    <td><button id="delete">刪除</button></td>
+                                </tr>`)
+            })
+
+            // 點擊刪除 ==> 將該筆 tr 刪除 remove()
+
+        })
+
+    </script>
+</body>
+
+</html>
