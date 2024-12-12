@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ajax</title>
+    <link rel="stylesheet" href="./styles/common.css">
+    <style>
+        button {
+            padding: 10px;
+            margin: 20px 0;
+        }
+
+        table {
+            width: 600px;
+            border: 5px solid black;
+        }
+
+        th,
+        td {
+            width: 33%;
+            height: 40px;
+            border: 2px solid gray;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>ajax</h1>
+    </header>
+    <div class="container">
+        <button id="getData">GET DATA</button>
+        <table>
+            <thead>
+                <tr>
+                    <th>縣市</th>
+                    <th>高溫</th>
+                    <th>低溫</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr> -->
+            </tbody>
+        </table>
+    </div>
+    <!-- 引入jQuery -->
+    <script src="./jquery-3.7.1.js"></script>
+    <!-- 撰寫jQuery -->
+    <script>
+        // 等待DOM TREE產生後執行程式
+        $(function () {
+            // 氣象局 API文件頁面 https://opendata.cwa.gov.tw/dist/opendata-swagger.html 
+            // api: https://opendata.cwa.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorization=CWB-C4AC93C0-9470-477C-AC68-55DA8DBBA475&format=JSON&elementName=MinT,MaxT
+            $('#getData').on('click', function () {
+
+                // 抓資料
+                // .get(url,function)
+
+                $.get('https://opendata.cwa.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorization=CWB-C4AC93C0-9470-477C-AC68-55DA8DBBA475&format=JSON&elementName=MinT,MaxT', function (data) {
+
+                    // console.log('回傳的整包資料', data);
+
+                    const datas = data.records.location
+                    // console.log('縣市資料', datas);
+
+                    // 要讀取每筆資料 .each(array,function(index,value))
+                    $.each(datas, function (index, value) {
+                        // console.log('每一筆資料', value);
+                        // console.log('縣市', value.locationName);
+                        const cityName = value.locationName
+
+                        // 21C
+                        const minT = value.weatherElement[0].time[0].parameter.parameterName + value.weatherElement[0].time[0].parameter.parameterUnit
+                        const maxT = value.weatherElement[1].time[0].parameter.parameterName + value.weatherElement[0].time[0].parameter.parameterUnit
+                        // console.log(minT);
+                        // .append()
+                        $('tbody').append(`<tr>
+                                            <td>${cityName}</td>
+                                            <td>${maxT.replace('C', '°C')}</td>
+                                            <td>${minT.replace('C', '°C')}</td>
+                                        </tr>`)
+                    })
+                })
+            })
+        })
+    </script>
+</body>
+
+</html>
