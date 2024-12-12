@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>兩個數字計算機</title>
+    <link rel="stylesheet" href="./styles/common.css">
+    <style>
+        input[type=button] {
+            padding: 0 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>兩個數字計算機</h1>
+    </header>
+    <div class="container">
+        <div class="box">
+            <input type="text" id="num1">
+
+            <select name="" id="symbols">
+                <option value="+">+</option>
+                <option value="-">-</option>
+                <option value="*">*</option>
+                <option value="/">/</option>
+            </select>
+
+            <input type="text" id="num2">
+
+            <input type="button" id="enter" value="=">
+
+            <input type="text" id="result" readonly>
+        </div>
+    </div>
+    <!-- 引入jQuery -->
+    <script src="./jquery-3.7.1.js"></script>
+    <!-- 撰寫jQuery -->
+    <script>
+        // 等待DOM TREE產生後執行程式
+        $(function () {
+
+
+            function calculate() {
+                // 額外 ** 沒有輸入值 (字串.length) ==> 輸入數字 ** 
+                if ($('#num1').val().length == 0 || $('#num2').val().length == 0) {
+                    return $('#result').val('請輸入內容')
+                }
+
+                // console.log($('#num1').val(), typeof $('#num1').val());
+                // Number()
+                // 抓到 num1,num2,symbols .val()
+                const num1 = Number($('#num1').val())
+                const num2 = Number($('#num2').val())
+                const symbol = $('#symbols').val()
+
+                let res = ''
+                // 判斷 symbol 來做四則運算
+                switch (symbol) {
+                    case '+':
+                        res = num1 + num2
+                        break;
+                    case '-':
+                        res = num1 - num2
+                        break;
+                    case '*':
+                        res = num1 * num2
+                        break;
+                    case '/':
+                        res = num1 / num2
+                        break;
+                    default:
+                        res = num1 + num2
+                        break;
+                }
+
+                console.log(res);
+
+
+                // 額外 ** 輸入的值是不是數字 isNaN('輸入的值') ==> 請輸入數字 **
+                if (isNaN(res)) {
+                    res = '請輸入正確數字'
+                }
+
+                // 結果塞進 result .val('結果') 
+                $('#result').val(res)
+            }
+
+            // 當使用者點擊 『 = 』
+            $('#enter').on('click', calculate)
+
+            $(window).on('keyup', function () {
+                if (event.which == 13) {
+                    console.log('點擊鍵盤的enter鍵');
+                    calculate()
+                }
+            })
+
+
+        })
+    </script>
+</body>
+
+</html>

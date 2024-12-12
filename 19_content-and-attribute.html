@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>元素內容與屬性</title>
+    <link rel="stylesheet" href="./styles/common.css">
+</head>
+
+<body>
+    <header>
+        <h1>元素內容與屬性</h1>
+    </header>
+    <div class="container">
+        <p>p element <span>span element</span></p>
+        <hr>
+        <input type="text" value="Eddie" id="userName">
+        <hr>
+        <h3>單選</h3>
+        <input type="radio" name="classroom" value="308" id="A308"><label for="A308">308</label>
+        <input type="radio" name="classroom" value="309" id="A309" checked><label for="A309">309</label>
+        <input type="radio" name="classroom" value="310" id="A310"><label for="A310">310</label>
+        <input type="radio" name="classroom" value="311" id="A311"><label for="A311">311</label>
+        <hr>
+        <h3>複選</h3>
+        <input type="checkbox" name="computer" value="01" id="A01"><label for="A01">01</label>
+        <input type="checkbox" name="computer" value="02" id="A02" checked><label for="A02">02</label>
+        <input type="checkbox" name="computer" value="03" id="A03"><label for="A03">03</label>
+        <input type="checkbox" name="computer" value="04" id="A04" checked><label for="A04">04</label>
+        <hr>
+        <h3>下拉式選單</h3>
+        <select name="category" id="categorySelect">
+            <option value="O01">01</option>
+            <option value="O02">02</option>
+            <option value="O03">03</option>
+            <option value="O04">04</option>
+            <option value="O05">05</option>
+        </select>
+    </div>
+    <!-- 引入jQuery -->
+    <script src="./jquery-3.7.1.js"></script>
+    <!-- 撰寫jQuery -->
+    <script>
+        // 等待DOM TREE產生後執行程式
+        $(function () {
+
+            // 讀取值
+            console.log('.text()', $('p').text());
+            console.log('.html()', $('p').html());
+            console.log('.val()', $('#userName').val());
+            console.log('radio', $('input[name=classroom]:checked').val());
+
+            $('input[name=computer]:checked').each(function (index, element) {
+                // index為 jQuery物件中 此項目是第幾項 0,1,2
+                // element為 每一項的資料
+                // console.log(index, element);
+                console.log('checkbox', $(element).val());
+            });
+
+            console.log('select', $('#categorySelect').val());
+
+            // 設定值
+            // $('p').text('new p <span>new span</span>')
+            $('p').html('new p <span>new span</span>')
+            $('#userName').val('class 311')
+            $('#categorySelect').val('O04')
+
+
+        })
+    </script>
+</body>
+
+</html>
