@@ -69,12 +69,12 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
+                <!-- <tr>
                     <td>aa</td>
                     <td>bb</td>
                     <td>cc</td>
                     <td><button id="delete">刪除</button></td>
-                </tr>
+                </tr> -->
             </tbody>
         </table>
     </div>
@@ -106,6 +106,14 @@
             })
 
             // 點擊刪除 ==> 將該筆 tr 刪除 remove()
+
+            $('tbody').on('click', '#delete', function () {
+                console.log('this', $(this).parent().parent());
+                // $(this).parent().parent().remove()
+                // .parentsUntil()
+                // .closet()
+                $(this).closest('tr').remove()
+            })
 
         })
 
