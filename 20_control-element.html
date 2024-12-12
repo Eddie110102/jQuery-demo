@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新增/移動元素</title>
+    <link rel="stylesheet" href="./styles/common.css">
+    <style>
+        .target {
+            border: 5px solid black;
+            margin: 20px;
+            padding: 10px;
+        }
+
+        p {
+            border: 1px solid black;
+            margin: 10px;
+            padding: 5px;
+        }
+
+        button {
+            padding: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>新增/移動元素</h1>
+    </header>
+    <div class="container">
+        <div class="btns">
+            <button id="append">append</button>
+            <button id="prepend">prepend</button>
+            <button id="appendTo">appendTo</button>
+            <button id="prependTo">prependTo</button>
+            <button id="moveDtoBottom">將 default 放到最後一項</button>
+            <button id="moveDtoTop">將 default 放到第一項</button>
+            <button id="after">after</button>
+            <button id="before">before</button>
+            <button id="insertAfter">insertAfter</button>
+            <button id="insertBefore">insertBefore</button>
+            <button id="afterTarget">將 預設的兄弟元素 放在 target 之後 </button>
+            <button id="empty">將target元素清空</button>
+            <button id="remove">將target元素刪除</button>
+
+        </div>
+        <div class="target">
+            <p id="default">預設的p元素</p>
+        </div>
+        <p id="targetDefaultSiblings" style="background-color: lightblue;">target的預設兄弟元素</p>
+    </div>
+    <!-- 引入jQuery -->
+    <script src="./jquery-3.7.1.js"></script>
+    <!-- 撰寫jQuery -->
+    <script>
+        // 等待DOM TREE產生後執行程式
+        $(function () {
+            let index = 1;
+            let sIndex = 1;
+
+            // $('.target') 的 子元素 新增/移動
+            // .append()
+            $('#append').on('click', function () {
+                $('.target').append(`<p style="background-color:lightgreen">append 新增的元素 ${index}</p>`)
+                index++
+            })
+
+            // appendTo()
+            $('#appendTo').on('click', function () {
+                $(`<p style="background-color:pink">appendTo 新增的元素 ${index}</p>`).appendTo('.target')
+                index++
+            })
+
+
+            // .prepend()
+            $('#prepend').on('click', function () {
+                $('.target').prepend(`<p style="background-color:gray">prepend 新增的元素 ${index}</p>`)
+                index++
+            })
+
+            // prependTo()
+            $('#prependTo').on('click', function () {
+                $(`<p style="background-color:#ba74e0">prependTo 新增的元素 ${index}</p>`).prependTo('.target')
+                index++
+            })
+
+            $('#moveDtoBottom').on('click', function () {
+                $('.target').append($('#default'))
+            })
+
+            $('#moveDtoTop').on('click', function () {
+                $('.target').prepend($('#default'))
+            })
+
+            // $('.target') 的 兄弟層元素 新增
+            $('#after').on('click', function () {
+                $('.target').after(`<p>在 .target 之後 新增元素 after ${sIndex}</p>`)
+                sIndex++
+            })
+
+            $('#before').on('click', function () {
+                $('.target').before(`<p>在 .target 之前 新增元素 before ${sIndex}</p>`)
+                sIndex++
+            })
+
+            $('#insertAfter').on('click', function () {
+                $(`<p>在 .target 之後 新增元素 insertAfter ${sIndex}</p>`).insertAfter('.target')
+                sIndex++
+            })
+
+            $('#insertBefore').on('click', function () {
+                $(`<p>在 .target 之後 新增元素 insertBefore ${sIndex}</p>`).insertBefore('.target')
+                sIndex++
+            })
+
+            // 移動 target 兄弟層的預設元素
+            $('#afterTarget').on('click', function () {
+                $('.target').after($('#targetDefaultSiblings'))
+            })
+
+
+            // 清空內容 .empty()
+            $('#empty').on('click', function () {
+                $('.target').empty()
+            })
+
+            // 刪除元素 .remove()
+            $('#remove').on('click', function () {
+                $('.target').remove()
+            })
+        })
+    </script>
+</body>
+
+</html>
