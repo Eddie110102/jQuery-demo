@@ -17,3 +17,7 @@ h1 {
     width: 90%;
     margin: 50px auto;
 }
+
+hr {
+    margin: 20px 0;
+}

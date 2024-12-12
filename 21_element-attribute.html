@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>元素的屬性與樣式</title>
+    <link rel="stylesheet" href="./styles/common.css">
+    <style>
+        img {
+            width: 600px;
+            height: 400px;
+            border: 2px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>元素的屬性與樣式</h1>
+    </header>
+    <div class="container">
+        <button id="getSrc">getSrc</button>
+        <button id="setSrc">setSrc</button>
+        <button id="removeTitle">removeTitle</button>
+        <button id="getTitle">getTitle</button>
+
+        <button class="dataBtn" data-imagesrc="twice-1.webp" data-imageTitle="TWICE1">圖片一</button>
+        <button class="dataBtn" data-imagesrc="twice-2.webp" data-imageTitle="TWICE2">圖片二</button>
+
+        <button id="setGif"
+            data-imagesrc="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExbXFmZHFnMHZ6bnBudjYxZnBrbzBydTFzNWx4N2cwM2txdDRjY2NmMiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/nR4L10XlJcSeQ/200.webp">GIF</button>
+        <br>
+        <img src="./image/default.webp" alt="" title="預設圖片">
+
+        <hr>
+        <button id="getProp">getProp</button>
+        <button id="setProp">setProp</button>
+        <br>
+        <label><input type="checkbox" name="" id="agree">同意條款</label>
+        <br>
+        <button id="submit" disabled>送出</button>
+
+    </div>
+    <!-- 引入jQuery -->
+    <script src="./jquery-3.7.1.js"></script>
+    <!-- 撰寫jQuery -->
+    <script>
+        // 等待DOM TREE產生後執行程式
+        $(function () {
+            $('#getSrc').on('click', function () {
+                console.log($('img').attr('src'));
+            })
+
+            $('#setSrc').on('click', function () {
+                $('img').attr('src', './image/twice-1.webp')
+                $('img').attr('title', 'TWICE')
+            })
+
+            $('#removeTitle').on('click', function () {
+                $('img').removeAttr('title')
+            })
+
+            $('#getTitle').on('click', function () {
+                console.log($('img').attr('title'));
+            })
+
+            // 將資料存放在元素中，使用 data-??? 屬性
+            // 也可以使用 .data()
+            // .data(???) 取值
+            // .data(???,value) 設值
+            $('.dataBtn').on('click', function () {
+                // .attr()
+                // console.log('data-imgsrc', $(this).attr('data-imagesrc'));
+
+                // .data()
+                console.log('data-imgsrc', $(this).data('imagesrc'));
+
+                $('img').attr('src', `./image/${$(this).data('imagesrc')}`)
+            })
+
+            $('#setGif').on('click', function () {
+                console.log($(this).data('imageSrc'));
+
+                $('img').attr('src', $(this).data('imagesrc'))
+            })
+
+
+            $('#getProp').on('click', function () {
+                console.log($('#agree').prop('checked'));
+            })
+
+            $('#agree').on('click', function () {
+                $('#submit').prop('disabled', !$('#submit').prop('disabled'))
+            })
+        })
+    </script>
+</body>
+
+</html>
