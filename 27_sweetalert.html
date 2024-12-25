@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sweetalert2</title>
+    <link rel="stylesheet" href="./styles/common.css">
+</head>
+
+<body>
+    <header>
+        <h1>sweetalert2</h1>
+    </header>
+    <div class="container">
+        <button id="delete">刪除</button>
+    </div>
+    <!-- 引入SWEET ALERT 2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- 引入jQuery -->
+    <script src="./jquery-3.7.1.js"></script>
+    <!-- 撰寫jQuery -->
+    <script>
+        // 等待DOM TREE產生後執行程式
+        $(function () {
+            // 你的程式碼 
+            $('#delete').on('click', function () {
+                Swal.fire({
+                    title: "確定要刪除這筆資料嗎?",
+                    text: "資料刪除後無法復原",
+                    icon: "question",
+
+                    confirmButtonColor: "#3085d6",
+                    confirmButtonText: "刪除",
+
+                    showCancelButton: true,
+                    cancelButtonColor: "#d33",
+                    cancelButtonText: '取消',
+                }).then((result) => {
+                    // 點擊刪除 => 連線伺服器請求資料庫刪除資料
+                    // 點擊取消 => 取消動作
+                    if (result.isConfirmed) {
+                        // fetch
+                        Swal.fire({
+                            title: "刪除成功!",
+                            text: "你的資料已刪除",
+                            icon: "success",
+                            confirmButtonText: '關閉',
+                        });
+                    } else {
+                        Swal.fire({
+                            title: "未執行動作",
+                            text: "",
+                            icon: "warning",
+                            confirmButtonText: '關閉',
+                        });
+                    }
+                });
+            })
+        })
+    </script>
+</body>
+
+</html>

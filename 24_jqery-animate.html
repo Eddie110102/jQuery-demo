@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery Animate</title>
+    <link rel="stylesheet" href="./styles/common.css">
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: lightgreen;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        #default {
+            position: relative;
+            height: 100vh;
+        }
+
+        button {
+            padding: 5px 8px;
+            margin: 10px 5px 10px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>jQuery Animate</h1>
+    </header>
+    <div class="container">
+        <h2>隱藏/顯示</h2>
+        <button id="hide">hide</button>
+        <button id="show">show</button>
+        <h2>淡出/淡入</h2>
+        <button id="fadeOut">fadeOut</button>
+        <button id="fadeIn">fadeIn</button>
+        <h2>slide 隱藏/顯示</h2>
+        <button id="slideUp">slideUp</button>
+        <button id="slideDown">slideDown</button>
+        <h2>toggle</h2>
+        <button id="toggle">toggle</button>
+        <button id="fadeToggle">fadeToggle</button>
+        <button id="slideToggle">slideToggle</button>
+        <h2>自訂animate</h2>
+        <button id="downStair">下樓</button>
+        <button id="upStair">上樓</button>
+        <hr>
+        <div id="default">
+            <div class="box"></div>
+        </div>
+    </div>
+    <script src="./jquery-3.7.1.js"></script>
+    <script>
+        $(function () {
+            // 隱藏/顯示
+            $('#hide').on('click', function () {
+                // $('.box').hide()
+
+                // 毫秒數
+                // $('.box').hide(1000)
+
+                // 執行完畢做的事情
+                $('.box').hide(2000, function () {
+                    console.log('done');
+                })
+            })
+
+            $('#show').on('click', function () {
+                // $('.box').show()
+
+                // 毫秒數
+                $('.box').show(2000)
+
+                // duration:動畫毫秒數，start:開始執行動畫觸發的函數，progress:執行動畫時觸發的函數，complete:完成動畫執行的函數
+                // $('.box').show({
+                //     duration: 5000,
+                //     start: function () {
+                //         console.log('start');
+
+                //     }, complete: function () {
+                //         console.log('complete');
+
+                //     }, progress: function () {
+                //         console.log(new Date());
+
+                //     }
+                // })
+            })
+
+            // 淡出/淡入
+            $('#fadeOut').on('click', function () {
+
+                // 執行完畢做的事情
+                // $('.box').fadeOut()
+                $('.box').fadeOut(1400)
+            })
+
+            $('#fadeIn').on('click', function () {
+
+                // 執行完畢做的事情
+                // $('.box').fadeIn()
+                $('.box').fadeIn(1400)
+            })
+
+            // 隱藏/顯示 slide
+            $('#slideUp').on('click', function () {
+
+                // 執行完畢做的事情
+                $('.box').slideUp()
+            })
+
+            $('#slideDown').on('click', function () {
+
+                // 執行完畢做的事情
+                $('.box').slideDown()
+            })
+
+            // toggle
+            $('#toggle').on('click', function () {
+
+                // 執行完畢做的事情
+                $('.box').toggle()
+            })
+
+            $('#slideToggle').on('click', function () {
+
+                // 執行完畢做的事情
+                $('.box').slideToggle()
+            })
+
+            $('#fadeToggle').on('click', function () {
+
+                // 執行完畢做的事情
+                $('.box').fadeToggle()
+            })
+
+
+            // 自訂動畫 animate()
+            $('#downStair').on('click', function () {
+
+                // $('.box').animate({
+                //     left: '100px', top: '100px'
+                // }, 1000)
+
+                $('.box').animate({
+                    left: '+=100'
+                }, 1000).animate({ top: '+=100' }, 1000)
+            })
+
+            $('#upStair').on('click', function () {
+
+                // $('.box').animate({
+                //     left: '100px', top: '100px'
+                // }, 1000)
+
+                $('.box').animate({
+                    left: '+=100'
+                }, 1000,).animate({ top: '-=100' }, 1000)
+            })
+
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>animate css</title>
+    <!-- 引入外部檔案 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <!-- 使用自己的樣式 -->
+    <link rel="stylesheet" href="./styles/common.css">
+    <!-- <style></style> -->
+</head>
+
+<body>
+    <header>
+        <h1>Animate CSS</h1>
+    </header>
+    <div class="container">
+        <h2 class="target">Animate CSS 文字</h2>
+        <hr>
+        <button>bounce</button>
+        <button>backOutDown</button>
+        <button>flipOutY</button>
+
+        <span id="hide">click and animate then display none</span>
+
+    </div>
+    <!-- 引入jQuery -->
+    <script src="./jquery-3.7.1.js"></script>
+    <!-- 撰寫jQuery -->
+    <script>
+        // 等待DOM TREE產生後執行程式
+        $(function () {
+            // animate css 已寫好的JS
+
+            const animateCSS = (element, animation, prefix = 'animate__') =>
+                // We create a Promise and return it
+                new Promise((resolve, reject) => {
+                    const animationName = `${prefix}${animation}`;
+                    const node = document.querySelector(element);
+
+                    node.classList.add(`${prefix}animated`, animationName);
+
+                    // When the animation ends, we clean the classes and resolve the Promise
+                    function handleAnimationEnd(event) {
+                        event.stopPropagation();
+                        node.classList.remove(`${prefix}animated`, animationName);
+                        resolve('Animation ended');
+                    }
+
+                    node.addEventListener('animationend', handleAnimationEnd, { once: true });
+                });
+
+
+            // 按鈕被點擊，觸發樣式
+            $('button').on('click', function () {
+                animateCSS('.target', $(this).text())
+            })
+
+            $('#hide').on('click', function () {
+                animateCSS('.target', 'fadeOutTopRight').then(function () {
+                    $('.target').css('display', 'none')
+                })
+            })
+        })
+    </script>
+</body>
+
+</html>
